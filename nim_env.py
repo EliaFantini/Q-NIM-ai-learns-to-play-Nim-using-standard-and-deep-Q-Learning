@@ -1,6 +1,7 @@
 import random
 import numpy as np
 
+
 class NimEnv:
     def __init__(self, seed=None):
         self.n_heap = 3
@@ -131,11 +132,12 @@ class OptimalPlayer:
             at any given time.
 
     '''
-    def __init__(self, epsilon=0.2, player=0):
-        self.epsilon = epsilon
-        self.player = player #  0 or 1
 
-    def set_player(self, player = 0, j=-1):
+    def __init__(self, player=0, epsilon=0.2):
+        self.epsilon = epsilon
+        self.player = player  # 0 or 1
+
+    def set_player(self, player=0, j=-1):
         self.player = player
         if j != -1:
             self.player = 0 if j % 2 == 0 else 1
@@ -145,7 +147,7 @@ class OptimalPlayer:
         Random policy (then optimal when obvious):
             - Select an available heap
             - Select a random integer between 1 and the number of objects in this heap.
-            
+
         Parameters
         ----------
         heaps : list of integers
@@ -163,8 +165,8 @@ class OptimalPlayer:
         n_obj = random.choice(range(1, heaps[chosen_heap] + 1))
         move = [chosen_heap + 1, n_obj]
 
-
         return move
+
     def compute_nim_sum(self, heaps):
         """
         The nim sum is defined as the bitwise XOR operation,
@@ -234,7 +236,7 @@ class OptimalPlayer:
                     move = [index + 1, amount_to_remove]
                     return move
 
-    def act_q(self, heaps, q_table_row, greedy= False):
+    def act_q(self, heaps, q_table_row, greedy=False):
         """
         Policy relying on the Q-values learned applying q-learning algorithm.
         The player taking the last object wins. If greedy is True, the policy
@@ -267,13 +269,13 @@ class OptimalPlayer:
         if not greedy and random.random() < self.epsilon:
             move = self.randomMove(heaps)
             # converting move (list of 2 int) in the corresponding action (q_table_row's cell)
-            if move[0]==1:
+            if move[0] == 1:
                 q_value = q_table_row[move[1]-1]
-                action=move[1]-1
-            if move[0]==2:
+                action = move[1]-1
+            if move[0] == 2:
                 q_value = q_table_row[heaps[0] + move[1]-1]
-                action=heaps[0] + move[1]-1
-            if move[0]==3:
+                action = heaps[0] + move[1]-1
+            if move[0] == 3:
                 q_value = q_table_row[heaps[0] + heaps[1] + move[1]-1]
                 action = heaps[0] + heaps[1] + move[1]-1
 
@@ -282,10 +284,10 @@ class OptimalPlayer:
             # converting the action to the move format (list of 2 int)
             q_value = np.max(q_table_row)
             action = np.argmax(q_table_row)
-            if action<=(heaps[0]-1):
-                move=[1,action + 1]
-            if action>(heaps[0]-1) and action<=(heaps[0] + heaps[1] -1):
+            if action <= (heaps[0]-1):
+                move = [1, action + 1]
+            if action > (heaps[0]-1) and action <= (heaps[0] + heaps[1] - 1):
                 move = [2, action - heaps[0] + 1]
             if action > (heaps[0] + heaps[1] - 1):
                 move = [3, action - heaps[1] - heaps[0] + 1]
-        return move,q_value, action
+        return move, q_value, action
