@@ -39,20 +39,20 @@ without testing and self-learning). On the other hand, if time is not a problem,
 40’000 games with self-learning and decreasing epsilon will give the most robust model, since it will have explored much more
 states and scenarios than the simpler Q-Learning method.
 
-The following images show results with standard Q-Learning. On the left plot we see different intelligent agents (with different values of *n_star*, which is an hyperparameter of the training) playing 500 matches against the Optimal Player, who always does the mathematically best move. This is done every 250 matches played training, and we can see that the score obtained goes closer and closer to 0: when the M_opt score is 0, the intelligent agents wins half of the times against the optimal_player. Since it's impossible to do better, this means the agent has learned to play. As a proof , we have the right image. The game is in the case where there's 3,4,7 sticks in the 3 rows and the mathematically best action is to
+The following images show results with standard Q-Learning. On the plot we see different intelligent agents (with different values of *n_star*, which is an hyperparameter of the training) playing 500 matches against the Optimal Player, who always does the mathematically best move. This is done every 250 matches played training, and we can see that the score obtained goes closer and closer to 0: when the M_opt score is 0, the intelligent agents wins half of the times against the optimal_player. Since it's impossible to do better, this means the agent has learned to play. As a proof , we have the image with the grey-coloured cells. The game is in the case where there's 3,4,7 sticks in the 3 rows and the mathematically best action is to
 remove 1 stick from heap 3. Such action is coded as action 7, which is indeed the one with the highest Q-value (brigther color, white), meaning that it is the action the intelligent agent will choose.
 <p align="center">
-<img height="250" alt="1" src="https://user-images.githubusercontent.com/62103572/183409263-898cdfe4-26dd-4850-b31f-a8d5d16a73eb.png">
-<img height="250" alt="2" src="https://user-images.githubusercontent.com/62103572/183409259-dd62e03c-41e3-4e20-b70a-6283a4794dbc.png">
+<img width="800" alt="1" src="https://user-images.githubusercontent.com/62103572/183409263-898cdfe4-26dd-4850-b31f-a8d5d16a73eb.png">
+<img width="350" alt="2" src="https://user-images.githubusercontent.com/62103572/183409259-dd62e03c-41e3-4e20-b70a-6283a4794dbc.png">
 
 
 </p>
 
-The following images show results with Deep Q-Learning. The explanation is similar, again on the left we see the brightest cell is the 14th, which indeed corresponds to the best action that can be chosen.
+The following images show results with Deep Q-Learning. The explanation is similar, again on the grey-coloured cells' image we see the brightest cell is the 14th, which indeed corresponds to the best action that can be chosen.
 
 <p align="center">
-<img height="250" alt="Immagine 2022-08-08 133446" src="https://user-images.githubusercontent.com/62103572/183409347-e4d654f6-8c30-4393-b10c-5964ad5d4b00.png">
-<img height="250" alt="4" src="https://user-images.githubusercontent.com/62103572/183409352-48a711bb-457b-4c64-bbf4-40d11e457b2c.png">
+<img width="800" alt="Immagine 2022-08-08 133446" src="https://user-images.githubusercontent.com/62103572/183409347-e4d654f6-8c30-4393-b10c-5964ad5d4b00.png">
+<img width="350" alt="4" src="https://user-images.githubusercontent.com/62103572/183409352-48a711bb-457b-4c64-bbf4-40d11e457b2c.png">
 
 </p>
 
